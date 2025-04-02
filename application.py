@@ -6,9 +6,7 @@ application=Flask(__name__)
 
 app=application
 CORS(app)
-# @app.route('/')
-# def home_page():
-#     return render_template('index.html')
+predict_pipeline=PredictPipeline()
 
 @app.route('/predict',methods=['POST'])
 def predict_datapoint():
@@ -25,13 +23,15 @@ def predict_datapoint():
             clarity = form.get('clarity')
         )
         final_new_data=data.get_data_as_dataframe()
-        predict_pipeline=PredictPipeline()
         pred=predict_pipeline.predict(final_new_data)
 
         results=round(pred[0],2)
 
         return jsonify({"price": results})
     
+# @app.route('/')
+# def home_page():
+#return render_template('index.html')
 
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=8000,debug=True)
