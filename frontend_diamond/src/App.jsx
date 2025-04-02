@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"; // ✅ Corrected import
 const onFormSubmit = async (data) => {
   try {
     // Send the POST request directly with the passed-in data
-    const response = await fetch("http://localhost:8000/predict", {
+    const response = await fetch("https://project-diamondpriceprediction-r0ot.onrender.com/predict", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
